@@ -1,34 +1,14 @@
-# mlp-project
-MLP 2026 Group Project
-<br>
-The gray box in the project description has the most important instructions.
-
-1. The project description says:
-> You should start from an interpretable baseline model of your choice, including as few or as many of the provided variables.
-so we should train a Logistic Regressoin model on the provided subset of features in `unicef_malawi.csv`
-<br>
-
-2. This is the objective of the project, and if we're using PCA then we'll need some way to map back to variables (perhaps need to consider no PCA?)
-> Thus, your report should focus on describing and motivating your final model choice, along with a comparison against the baseline model. It is important that any interpretations and conclusions you draw from your model are well supported and sound and that you understand limitations of the model and the data.
-
-3. Please make sure that all figures have analysis.
-> if a figure is not explicitly discussed in the text it should not be in the final document
-
-
-Triptesh, could you plz try training logistic regression on this reduced feature set, curious if removing all of these is useful
-```
-%%capture
-features = get_features(['FCF', 'CL', 'FCD', 'PR', 'HC'], excl_features+['FCF17__FCF17', 'FCF21__FCF21', 'FCF8__FCF8', 'FCF19__FCF19'])
-print(f"Total number of features: {len(features)}")
-pre_processor = PreProcessor(df,features, 
-                            num_features=list(set(num_features).intersection(set(features))), 
-                            one_hot_features=list(set(one_hot_features).intersection(set(features))))could 
-
-pipe = Pipeline([
-    ('pre', pre_processor1),
-    ('scaler', StandardScaler()),
-    ('pca', PCA(n_components=0.95, random_state=random_state)),
-])
-
-pipe.fit_transform(df[features])
-```
+### Machine Learning in Python (MATH11205) Course Project
+For the purpose of the project, consider yourself a Data Science Consultant who has been
+hired by UNICEF to analyse childhood depression in low-income countries. The mental health of
+the next generation – those aged under 18 years - is a societal priority. Identifying and treating
+mental health early in life has lifelong impacts on physical health, education, earning potential,
+relationships, identity formation and life satisfaction. Further, the burden of poor mental health
+disproportionately falls on lower- and middle-income settings (LMICs), and on women and young
+people in particular. Mental health is influenced by various factors, at the level of the child, parent,
+and societal environment. For an integrated model of mental health, an approach that combines
+these multiple factors together is required, and is possible through the UNICEF’s Multiple Indicator
+Cluster Survey (MICS), which collects information on the child, parent, and household environment.
+For further details on the data, please see the main webpage for the Multiple Indicator Cluster
+Survey (MICS). Towards this aim, you have been asked to use this data to build a classification model to predict if
+a child suffers from depressive feelings.
